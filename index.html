@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<!-- <script src="js/scripts.js" type="text/javascript" charset="utf-8" async defer></script> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	   <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.min.css">
+
+     <link rel="stylesheet" href="../assets/owlcarousel/assets/owl.carousel.min.css">
+    <script src="vendors/jquery.min.js"></script>
+     <script src="owlcarousel/owl.carousel.js"></script>
+     <style type="text/css" media="screen">
+     	.owl-carousel img {height: auto; width: 150px; margin:0 auto;}
+     	.owl-carousel a p {color:#000;}
+     	.buy-button {background-color:darkorange; color: #fff; text-transform: uppercase; padding:10px; height: 40px !important; font-size: 14px; border: 0; height: 24px;}
+     </style>
+
+</head>
+
+
+<body>
+	<div class="container"> 
+		<div class="owl-carousel owl-theme">
+<!--     <div class="item"><h4>1</h4></div>
+    <div class="item"><h4>2</h4></div>
+    <div class="item"><h4>3</h4></div>
+    <div class="item"><h4>4</h4></div>
+    <div class="item"><h4>5</h4></div>
+    <div class="item"><h4>6</h4></div>
+    <div class="item"><h4>7</h4></div>
+    <div class="item"><h4>8</h4></div>
+    <div class="item"><h4>9</h4></div>
+    <div class="item"><h4>10</h4></div>
+    <div class="item"><h4>11</h4></div>
+    <div class="item"><h4>12</h4></div> -->
+</div>
+
+          <script>
+
+   $(document).ready(function() {
+
+
+    $.getJSON('https://www.deadgoodbooks.co.uk/wp-json/wp/v2/posts?categories=1207', function(data) {
+
+
+        $.each(data, function(i, item) {
+            $.each(item.acf, function(key2, value2) {
+
+            	   
+                if (typeof value2.title !== "undefined" && typeof value2.author !== "undefined") {
+
+
+ 
+                    $('.owl-carousel').append('<a href="https://www.deadgoodbooks.co.uk/' + item.slug + '">' + '<div class="item"> ' + "<p>" + "<img src=" + value2.url + ">" + "<strong>" + JSON.stringify(value2.title) + "</strong>" + '<br /><button class="rounded buy-button">Buy The Book </button>' + '</div></a> ');
+                }
+
+
+            });
+        });
+
+
+        $(".owl-carousel").owlCarousel({
+            dots: true,
+             loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:2
+        },
+        600:{
+            items:4
+        },
+        1000:{
+            items:6
+        }
+    }
+
+        });
+    });
+});
+
+          </script>
+   
+
+	</div>
+	  
+</body>
+</html>
